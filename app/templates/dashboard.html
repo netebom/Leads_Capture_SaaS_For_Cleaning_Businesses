@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ business["name"] }} – Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>{{ business["name"] }} – Dashboard</h1>
+
+<p><strong>Email:</strong> {{ business["email"] }}</p>
+<p><strong>Country:</strong> {{ business["country"] }}</p>
+
+<hr>
+
+<h3>Public Lead Form</h3>
+<p>Share this link with customers:</p>
+
+<code>
+http://127.0.0.1:5000/form/{{ token }}
+</code>
+
+<hr>
+
+<h3>Leads</h3>
+
+<p>
+    <a href="/export/{{ token }}">
+        <button>Download CSV</button>
+    </a>
+</p>
+
+{% if leads and leads|length > 0 %}
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Cleaning Type</th>
+        <th>City</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Date</th>
+    </tr>
+
+    {% for lead in leads %}
+    <tr>
+        <td>{{ lead["cleaning_type"] }}</td>
+        <td>{{ lead["city"] }}</td>
+        <td>{{ lead["phone"] }}</td>
+        <td><strong>{{ lead["status"] }}</strong></td>
+        <td>
+            <form method="POST" action="/lead-status/{{ token }}/{{ lead['id'] }}">
+                <select name="status">
+                    <option {% if lead["status"] == "New" %}selected{% endif %}>New</option>
+                    <option {% if lead["status"] == "Contacted" %}selected{% endif %}>Contacted</option>
+                    <option {% if lead["status"] == "Closed" %}selected{% endif %}>Closed</option>
+                </select>
+                <button type="submit">Save</button>
+            </form>
+        </td>
+        <td>{{ lead["created_at"] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No leads yet.</p>
+{% endif %}
+
+</body>
+</html>

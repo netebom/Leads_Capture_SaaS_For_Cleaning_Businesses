@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ business["name"] }} – Request Cleaning Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Request Cleaning Service</h1>
+    <p>{{ business["name"] }}</p>
+
+    <form method="POST">
+        <label>Cleaning Type</label><br>
+        <select name="cleaning_type" required>
+            <option value="">Select</option>
+            <option>Regular Cleaning</option>
+            <option>Deep Cleaning</option>
+            <option>Move In / Move Out</option>
+            <option>Office Cleaning</option>
+            <option>Other</option>
+        </select><br><br>
+
+        <label>City</label><br>
+        <input type="text" name="city" required><br><br>
+
+        <label>Phone Number</label><br>
+        <input type="tel" name="phone" required><br><br>
+
+        <button type="submit">Submit Request</button>
+    </form>
+</body>
+</html>
+

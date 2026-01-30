@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Cleaning Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h2>Request Cleaning Service</h2>
+
+<form method="POST" action="/lead/{{ token }}">
+    <p>
+        <label>Type of Cleaning</label><br>
+        <input type="text" name="cleaning_type" required>
+    </p>
+
+    <p>
+        <label>City</label><br>
+        <input type="text" name="city" required>
+    </p>
+
+    <p>
+        <label>Phone Number</label><br>
+        <input type="text" name="phone" required>
+    </p>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
+
